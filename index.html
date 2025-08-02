@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COSMOS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <div class="ripple-background" id="ripple-effect-container"></div>
+
+  <div class="loader">
+    <div class="loader-logo">
+      <div class="loader-circle-1"></div>
+      <div class="loader-circle-2"></div>
+      <div class="loader-circle-3"></div>
+      <span>COSMOS</span>
+    </div>
+    <p class="loading-text">Exploring the universe...</p>
+  </div>
+
+  <div class="content-wrapper">
+    <header>
+      <div class="logo">COSMOS</div>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      <nav id="nav-menu">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#timeline">Timeline</a></li>
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        </section>
+
+      <section id="gallery">
+        <h1>Cosmic Gallery</h1>
+        <div class="image-grid">
+          <div class="image-card">
+            <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/MSNBC/Components/Photo/_new/110723-tch-spiral-galaxy-spider-web.jpg" alt="Spiral Galaxy" />
+            <p>Spiral Galaxy</p>
+          </div>
+          <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920" alt="Black Hole Event Horizon" />
+            <p>Black Hole Event Horizon</p>
+          </div>
+          <div class="image-card">
+            <img src="https://idsb.tmgrup.com.tr/ly/uploads/images/2022/06/16/212722.jpg" alt="Stellar Nursery" />
+            <p>Stellar Nursery</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline">
+        <h2>Mission Timeline</h2>
+        <div class="marquee">
+          <div class="marquee-content">
+            <span>🚀 1990: Hubble Launch &nbsp;&nbsp;|&nbsp;&nbsp; 🌌 2004: Cassini at Saturn &nbsp;&nbsp;|&nbsp;&nbsp; 🔭 2021: James Webb Deployed &nbsp;&nbsp;|&nbsp;&nbsp; 🛰️ 2024: Artemis I Launch &nbsp;&nbsp;|&nbsp;&nbsp; 🪐 2025: Jupiter Mission Prep</span>
+            <span>🚀 1990: Hubble Launch &nbsp;&nbsp;|&nbsp;&nbsp; 🌌 2004: Cassini at Saturn &nbsp;&nbsp;|&nbsp;&nbsp; 🔭 2021: James Webb Deployed &nbsp;&nbsp;|&nbsp;&nbsp; 🛰️ 2024: Artemis I Launch &nbsp;&nbsp;|&nbsp;&nbsp; 🪐 2025: Jupiter Mission Prep</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="team">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="https://placehold.co/200x200/00aaff/FFFFFF" alt="Team Member 1" />
+            <h3>Adarsh Gupta</h3>
+            <p>Lead Astronomer</p>
+          </div>
+          <div class="team-member">
+            <img src="https://placehold.co/200x200/00ffe0/01020a" alt="Team Member 2" />
+            <h3>Ishan Gadecha</h3>
+            <p>Data Scientist</p>
+          </div>
+          <div class="team-member">
+            <img src="https://placehold.co/200x200/e0e0e0/01020a" alt="Team Member 3" />
+            <h3>N.A.</h3>
+            <p>Mission Control</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 COSMOS. Keep exploring.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // --- CORRECTED LOADER SCRIPT ---
+    window.addEventListener('load', () => {
+      const loader = document.querySelector('.loader');
+      const content = document.querySelector('.content-wrapper');
+      
+      // Wait for intro animations to play out, then start fading the loader
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+      }, 2200); // Start fade-out after 2.2 seconds
+
+      // Hide loader and show content after the fade-out transition is complete
+      setTimeout(() => {
+        loader.style.display = 'none';
+        content.classList.add('visible');
+      }, 2700); // 2200ms wait + 500ms transition time
+    });
+
+    // --- MOBILE MENU SCRIPT ---
+    const toggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // --- RIPPLE EFFECT SCRIPT ---
+    document.addEventListener('click', (e) => {
+      const ripple = document.createElement('div');
+      ripple.className = 'ripple-circle';
+      const rippleBackground = document.querySelector('.ripple-background');
+      if (!rippleBackground) return;
+
+      const rect = rippleBackground.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      ripple.style.left = `${x}px`;
+      ripple.style.top = `${y}px`;
+      
+      rippleBackground.appendChild(ripple);
+      
+      ripple.addEventListener('animationend', () => {
+        ripple.remove();
+      });
+    });
+    
+    // --- CONTACT FORM SCRIPT ---
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevents page reload
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset(); // Clears the form fields
+    });
+
+    // --- PARTICLES.JS SCRIPT ---
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#ffffff' },
+        shape: { type: 'circle', stroke: { width: 0, color: '#000000' } },
+        opacity: { value: 0.5, random: true, anim: { enable: false } },
+        size: { value: 3, random: true, anim: { enable: false } },
+        line_linked: { enable: false },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: 'none',
+          random: true,
+          straight: false,
+          out_mode: 'out',
+          bounce: false,
+        },
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } },
+      },
+      retina_detect: true,
+    });
+  </script>
+</body>
+</html>
